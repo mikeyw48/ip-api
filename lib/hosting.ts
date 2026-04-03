@@ -6,7 +6,7 @@ const file = await fs.readFile(
 );
 const hostingArr = JSON.parse(file);
 const hostingMap = new Map<number, { org_name: string }>();
-hostingArr.forEach((h: { asn: number; org_name: any; }) => hostingMap.set(h.asn, { org_name: h.org_name }));
+hostingArr.forEach((h: { asn: number; org_name: string; }) => hostingMap.set(h.asn, { org_name: h.org_name }));
 
 export async function getHosting(asn: number) {
   try {
