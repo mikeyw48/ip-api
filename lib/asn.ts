@@ -6,23 +6,22 @@ export function getASN(query: string) {
   try {
     const result = lookup.get(query);
 
-    if (!result){
+    if (!result) {
       return {
         success: false,
-        error: "No ASN found for IP"
-      }
+        error: "No ASN found for IP",
+      };
     }
 
     return {
       success: true,
       asn: result.autonomous_system_number,
-      org: result.autonomous_system_organization
-    }
-
+      org: result.autonomous_system_organization,
+    };
   } catch (err) {
     return {
       success: false,
-      error: "Invalid IP or ASN lookup failure"
-    }
+      error: "Invalid IP or ASN lookup failure",
+    };
   }
 }
