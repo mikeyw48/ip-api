@@ -1,4 +1,5 @@
 import { getASN } from "@/lib/asn";
+import { getDataCenter } from "@/lib/datacenter";
 import { getHosting } from "@/lib/hosting";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
@@ -23,11 +24,14 @@ export async function GET(request: NextRequest) {
 
   const isHosting = await getHosting(asnResult.asn!);
 
+  const isLikelyDataCenter = await getDataCenter(asnResult.org!);
+
   return NextResponse.json({
     success: asnResult.success,
     ip: result.data,
     asn: asnResult.asn,
     org: asnResult.org,
-    isHosting: isHosting.isHosting
+    isHosting: isHosting.isHosting,
+    isLikelyDataCenter: isLikelyDataCenter.isLikelyDataCenter
   });
 }
